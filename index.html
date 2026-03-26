@@ -573,18 +573,26 @@
         </div>
       </article>
 
-  <article class="news-card" id="scoby-loo">
-  <img src="https://i.imgur.com/XPDsQvb.jpeg" alt="Scoby loo">
-  <div class="news-card-content">
-    <a class="tag" href="scoby-loo-tiros.html">Brasil em choque</a>
-    <a href="scoby-loo-tiros.html">
-      <h3>Scoby loo, da série Scoby Doo, é morto a tiros no Brasil e caso gera repercussão</h3>
-    </a>
-    <p>Internet reage com o equilíbrio emocional de sempre: nenhum.</p>
-  </div>
-</article>
+      <div class="news-grid">
+        <article class="news-card" id="brasil">
+          <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1000&q=80" alt="Política">
+          <div class="news-card-content">
+            <a class="tag" href="noticia-powerpoint.html">Política em surto</a>
+            <a href="noticia-powerpoint.html">
+              <h3>Deputado promete resolver crise na base do grito e de um PowerPoint mal recortado</h3>
             </a>
             <p>Especialistas analisam se foi plano de governo ou apenas um evento canônico da democracia brasileira.</p>
+          </div>
+        </article>
+
+        <article class="news-card" id="scoby-loo">
+          <img src="https://i.imgur.com/XPDsQvb.jpeg" alt="Scoby loo">
+          <div class="news-card-content">
+            <a class="tag" href="scoby-loo-tiros.html">Brasil em choque</a>
+            <a href="scoby-loo-tiros.html">
+              <h3>Scoby loo, da série Scoby Doo, é morto a tiros no Brasil e caso gera repercussão</h3>
+            </a>
+            <p>Internet reage com o equilíbrio emocional de sempre: nenhum.</p>
           </div>
         </article>
 
@@ -650,6 +658,7 @@
           <li><a href="noticia-placar.html">Ranking dos surtos políticos da semana com nota técnica e deboche</a></li>
           <li><a href="noticia-cabelo.html">Veja as 5 imagens cursed que resumem melhor o cenário internacional</a></li>
           <li><a href="Sao-paulo-metro.html">São Paulo entra em pane após crise diplomática com a Linha 6</a></li>
+          <li><a href="scoby-loo-tiros.html">Scoby loo entra para estatística sombria após caso bizarro</a></li>
         </ul>
       </div>
 
@@ -698,6 +707,7 @@
       const routes = [
         { keywords: ['milei', 'muro', 'brasil', 'argentina', 'argebntuba'], url: 'noticia-muro.html' },
         { keywords: ['deputado', 'powerpoint', 'crise', 'grito'], url: 'noticia-powerpoint.html' },
+        { keywords: ['scoby', 'scoby loo', 'scubu', 'scoby doo', 'tiros', 'morto', 'brasil'], url: 'scoby-loo-tiros.html' },
         { keywords: ['time', 'placar', '4 a 0', 'futebol', 'treinador'], url: 'noticia-placar.html' },
         { keywords: ['prefeitura', 'obra', 'buraco', 'imersiva'], url: 'noticia-buraco.html' },
         { keywords: ['autoridade', 'cabelo', 'anúncio', 'internet'], url: 'noticia-cabelo.html' },
@@ -709,7 +719,7 @@
       if (found) {
         window.location.href = found.url;
       } else {
-        alert('Nenhuma notícia encontrada. Tenta pesquisar por muro, Milei, deputado, placar, obra, cabelo, São Paulo ou linha 6.');
+        alert('Nenhuma notícia encontrada. Tenta pesquisar por muro, Milei, deputado, Scoby, placar, obra, cabelo, São Paulo ou linha 6.');
       }
 
       return false;
