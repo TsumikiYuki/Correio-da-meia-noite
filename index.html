@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Correio da Meia-Noite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --text: #1a1a1a;
+      --card: #ffffff;
+      --muted: #555555;
+      --header: #ffffff;
+      --topbar: #111111;
+      --accent: #c89b3c;
+      --border: #eeeeee;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    body.dark {
+      --bg: #0b0b0d;
+      --text: #f2f2f2;
+      --card: #131316;
+      --muted: #b8bcc7;
+      --header: #101014;
+      --topbar: #000000;
+      --accent: #d4a63f;
+      --border: #2a2f39;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .top-bar {
+      background: var(--topbar);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-banner {
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-banner img {
+      width: 100%;
+      max-height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    header {
+      background: var(--header);
+      border-bottom: 2px solid var(--accent);
+      padding: 18px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .logo {
+      font-family: 'Merriweather', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .theme-toggle,
+    .social-btn,
+    .search-bar button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .theme-toggle:hover,
+    .social-btn:hover,
+    .search-bar button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .search-bar input {
+      width: 220px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      outline: none;
+    }
+
+    .search-bar input::placeholder {
+      color: var(--muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-weight: 700;
+    }
+
+    nav a:hover,
+    .main-link:hover,
+    .news-card a:hover,
+    .sidebar-box a:hover {
+      color: var(--accent);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1300px;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 30px;
+    }
+
+    .main-news,
+    .news-card,
+    .sidebar-box,
+    .brand-card {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .main-news img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .main-news-content,
+    .news-card-content,
+    .sidebar-box,
+    .brand-card {
+      padding: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    .main-news h1,
+    .news-card h3,
+    .sidebar-box h2,
+    .brand-card h2 {
+      font-family: 'Merriweather', serif;
+    }
+
+    .main-news h1 {
+      font-size: 2.15rem;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .main-news p,
+    .news-card p,
+    .newsletter p,
+    .brand-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .main-link {
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .news-grid {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .news-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sidebar-box h2,
+    .brand-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .sidebar-box ul {
+      list-style: none;
+    }
+
+    .sidebar-box li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.96rem;
+    }
+
+    .sidebar-box li:last-child {
+      border-bottom: none;
+    }
+
+    .newsletter input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 12px 0;
+      font-size: 1rem;
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .newsletter button {
+      width: 100%;
+      padding: 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .brand-center {
+      text-align: center;
+    }
+
+    .brand-center img {
+      width: 100%;
+      max-width: 280px;
+      display: block;
+      margin: 0 auto 14px;
+      object-fit: contain;
+    }
+
+    .mini-logo {
+      width: 90px !important;
+      max-width: 90px !important;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: var(--topbar);
+      color: #fff;
+      text-align: center;
+      padding: 25px 15px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .main-news img {
+        height: 260px;
+      }
+
+      .header-container,
+      .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-banner img {
+        max-height: 140px;
+      }
+
+      .main-news h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">Urgente • Fofoqueiros internacionais • Política em surto • Economia em lágrimas • Imagens duvidosas</div>
+
+  <div class="brand-banner">
+    <img src="https://imgur.com/wLqn1Mn.png" alt="Banner Correio da Meia-Noite">
+  </div>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo-wrap">
+        <img src="https://imgur.com/CBRftiF.png" alt="Símbolo do Correio da Meia-Noite" class="logo-icon">
+        <span class="logo">Correio da Meia-Noite</span>
+      </a>
+
+      <div class="header-actions">
+        <form class="search-bar" onsubmit="return searchNews(event)">
+          <input type="text" id="searchInput" placeholder="Pesquisar notícia..." aria-label="Pesquisar notícia">
+          <button type="submit">Buscar</button>
+        </form>
+        <a class="social-btn" href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">𝕏 Twitter oficial</a>
+        <button class="theme-toggle" id="themeToggle">🌙 Modo escuro</button>
+
+        <nav>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="#brasil">Brasil em choque</a></li>
+            <li><a href="#mundo">Mundo em pane</a></li>
+            <li><a href="#fofoca">Fofoca internacional</a></li>
+            <li><a href="#memes">Memes históricos</a></li>
+            <li><a href="#entrevistas">Entrevistas tortas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <article class="main-news">
+        <img src="https://www.almendron.com/tribuna/wp-content/uploads/2024/12/argentina-has-javier-milei-proved-his-critics-wrong-7.webp" alt="Notícia principal">
+        <div class="main-news-content">
+          <a class="tag" href="noticia-muro.html">Urgente e meio torto</a>
+          <h1>Milei começa a construir muro com o Brasil</h1>
+          <p>Em mais um capítulo da política sul-americana, declarações sobre fronteiras viram manchete.</p>
+          <p><strong>Em entrevista, um suposto morador da Argentina disse:</strong> “O quê? Não falo português não, te entendo nada.”</p>
+          <a class="main-link" href="noticia-muro.html">Ler a confusão completa →</a>
+        </div>
+      </article>
+
+      <div class="news-grid">
+        <article class="news-card" id="brasil">
+          <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1000&q=80" alt="Política">
+          <div class="news-card-content">
+            <a class="tag" href="noticia-powerpoint.html">Política em surto</a>
+            <a href="noticia-powerpoint.html">
+              <h3>Deputado promete resolver crise na base do grito e de um PowerPoint mal recortado</h3>
+            </a>
+            <p>Especialistas analisam se foi plano de governo ou apenas um evento canônico da democracia brasileira.</p>
+          </div>
+        </article>
+
+  <article class="news-card" id="sao-paulo">
+  <img src="https://i.imgur.com/tYyQHVu.jpeg" alt="São Paulo">
+  <div class="news-card-content">
+    <a class="tag" href="Sao-paulo-metro.html">Política em surto</a>
+    <a href="Sao-paulo-metro.html">
+      <h3>São Paulo retira Linha 6 do metrô graças ao meme 67</h3>
+    </a>
+    <p>Especialistas analisam se foi cringe ou poggers.</p>
+  </div>
+</article>
+
+        <article class="news-card" id="mundo">
+          <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1000&q=80" alt="Esportes">
+          <div class="news-card-content">
+            <a class="tag" href="noticia-placar.html">Esporte e humilhação</a>
+            <a href="noticia-placar.html">
+              <h3>Time perde de 4 a 0 e treinador afirma que placar foi apenas um detalhe estatístico</h3>
+            </a>
+            <p>A torcida discordou com a serenidade de quem já estava digitando textão antes do segundo gol.</p>
+          </div>
+        </article>
+
+        <article class="news-card" id="fofoca">
+          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1000&q=80" alt="Cultura">
+          <div class="news-card-content">
+            <a class="tag" href="noticia-buraco.html">Cultura e delírio</a>
+            <a href="noticia-buraco.html">
+              <h3>Prefeitura inaugura obra inacabada e chama buraco no chão de experiência urbana imersiva</h3>
+            </a>
+            <p>Moradores relataram emoção, confusão e um leve risco de torção no tornozelo.</p>
+          </div>
+        </article>
+
+        <article class="news-card" id="memes">
+          <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1000&q=80" alt="Mundo">
+          <div class="news-card-content">
+            <a class="tag" href="noticia-cabelo.html">Mundo em pane</a>
+            <a href="noticia-cabelo.html">
+              <h3>Autoridade internacional faz anúncio sério, mas internet só comenta o corte de cabelo</h3>
+            </a>
+            <p>A era da informação morreu e renasceu em formato de print com legenda debochada.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <aside class="sidebar" id="entrevistas">
+      <div class="brand-card brand-center">
+        <img src="https://imgur.com/s6lCbqY.png" alt="Logo completa do Correio da Meia-Noite">
+        <h2>Nosso caos institucional</h2>
+        <p>A verdade chega primeiro. A dignidade, não.</p>
+        <a class="social-btn" href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">Seguir no X</a>
+      </div>
+
+      <div class="sidebar-box">
+        <h2>Mais lidas da madrugada</h2>
+        <ul>
+          <li><a href="noticia-muro.html">“Achei que era meme”, diz leitor após descobrir que notícia era real</a></li>
+          <li><a href="noticia-powerpoint.html">Economista entra em choque ao ver a frase “fonte: vozes da minha cabeça”</a></li>
+          <li><a href="noticia-placar.html">Ranking dos surtos políticos da semana com nota técnica e deboche</a></li>
+          <li><a href="noticia-cabelo.html">Veja as 5 imagens cursed que resumem melhor o cenário internacional</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-box newsletter">
+        <h2>Receba o caos no seu e-mail</h2>
+        <p>Entre com seu e-mail para receber manchetes reais escritas como se o mundo tivesse sido dirigido por roteiristas de meme.</p>
+        <input type="email" placeholder="Seu e-mail duvidoso" />
+        <button>Quero surtar informado</button>
+      </div>
+
+      <div class="brand-card brand-center">
+        <img src="https://imgur.com/pFbFR1t.png" alt="Símbolo alternativo do jornal" class="mini-logo">
+        <p>Identidade oficial do jornal nas trevas da madrugada.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <img src="https://imgur.com/CBRftiF.png" alt="Logo do Correio da Meia-Noite" class="footer-logo">
+    <p>© 2026 Correio da Meia-Noite — A verdade chega primeiro. A dignidade, não.</p>
+    <p style="margin-top:8px;">
+      <a href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">Twitter oficial do jornal</a>
+    </p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      toggleButton.textContent = '☀️ Modo claro';
+    }
+
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      toggleButton.textContent = isDark ? '☀️ Modo claro' : '🌙 Modo escuro';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
+    function searchNews(event) {
+      event.preventDefault();
+      const value = document.getElementById('searchInput').value.trim().toLowerCase();
+
+      const routes = [
+        { keywords: ['milei', 'muro', 'brasil', 'argentina', 'argebntuba'], url: 'noticia-muro.html' },
+        { keywords: ['deputado', 'powerpoint', 'crise', 'grito'], url: 'noticia-powerpoint.html' },
+        { keywords: ['time', 'placar', '4 a 0', 'futebol', 'treinador'], url: 'noticia-placar.html' },
+        { keywords: ['prefeitura', 'obra', 'buraco', 'imersiva'], url: 'noticia-buraco.html' },
+        { keywords: ['autoridade', 'cabelo', 'anúncio', 'internet'], url: 'noticia-cabelo.html' }
+      ];
+
+      const found = routes.find(route => route.keywords.some(word => value.includes(word)));
+
+      if (found) {
+        window.location.href = found.url;
+      } else {
+        alert('Nenhuma notícia encontrada. Tenta pesquisar por muro, Milei, deputado, placar, obra ou cabelo.');
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>São Paulo retira Linha 6 do metrô graças ao meme 67 — Correio da Meia-Noite</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --text: #1a1a1a;
+      --card: #ffffff;
+      --muted: #555555;
+      --header: #ffffff;
+      --topbar: #111111;
+      --accent: #c89b3c;
+      --border: #eeeeee;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    body.dark {
+      --bg: #0b0b0d;
+      --text: #f2f2f2;
+      --card: #131316;
+      --muted: #b8bcc7;
+      --header: #101014;
+      --topbar: #000000;
+      --accent: #d4a63f;
+      --border: #2a2f39;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .top-bar {
+      background: var(--topbar);
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-banner {
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand-banner img {
+      width: 100%;
+      max-height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    header {
+      background: var(--header);
+      border-bottom: 2px solid var(--accent);
+      padding: 18px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .logo {
+      font-family: 'Merriweather', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .theme-toggle,
+    .social-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .theme-toggle:hover,
+    .social-btn:hover,
+    .back-home:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    .article {
+      width: 90%;
+      max-width: 900px;
+      margin: 30px auto;
+      background: var(--card);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-content {
+      padding: 30px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    h1, h2 {
+      font-family: 'Merriweather', serif;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .meta {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      margin: 28px 0 12px;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .inline-image {
+      margin: 26px 0;
+      background: rgba(0,0,0,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .inline-image img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .inline-image figcaption {
+      padding: 12px 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    blockquote {
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      margin: 22px 0;
+      background: rgba(200, 155, 60, 0.08);
+      border-radius: 10px;
+      font-style: italic;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 14px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 40px;
+      background: var(--topbar);
+      color: #fff;
+      text-align: center;
+      padding: 25px 15px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .article-content {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 1.65rem;
+      }
+
+      .hero-image {
+        height: 260px;
+      }
+
+      .brand-banner img {
+        max-height: 140px;
+      }
+
+      .header-container,
+      .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">Urgente • Fofoqueiros internacionais • Política em surto • Economia em lágrimas • Imagens duvidosas</div>
+
+  <div class="brand-banner">
+    <img src="https://i.imgur.com/wLqn1Mn.png" alt="Banner Correio da Meia-Noite">
+  </div>
+
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo-wrap">
+        <img src="https://i.imgur.com/CBRftiF.png" alt="Símbolo do Correio da Meia-Noite" class="logo-icon">
+        <span class="logo">Correio da Meia-Noite</span>
+      </a>
+
+      <div class="header-actions">
+        <a class="social-btn" href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">𝕏 Twitter oficial</a>
+        <button class="theme-toggle" id="themeToggle">🌙 Modo escuro</button>
+      </div>
+    </div>
+  </header>
+
+  <article class="article">
+    <img
+      class="hero-image"
+      src="https://i.imgur.com/tYyQHVu.jpeg"
+      alt="Linha 6 do metrô de São Paulo"
+    />
+
+    <div class="article-content">
+      <span class="tag">Política em surto</span>
+      <h1>São Paulo retira Linha 6 do metrô graças ao meme 67</h1>
+      <p class="subtitle">
+        Cidade entra em novo surto coletivo digital após rumores de que a Linha 6 teria sido sacrificada para preservar a aura paulistana.
+      </p>
+      <div class="meta">Publicado às 03:14 • Por Redação do Correio da Meia-Noite</div>
+
+      <p>
+        São Paulo amanheceu mergulhada em mais uma polêmica daquelas que parecem ter escapado de um surto coletivo da internet. A discussão da vez envolve a suposta retirada da <strong>Linha 6 do metrô</strong> para evitar associações e piadas com “67”, expressão que, segundo os rumores, estaria causando desconforto e desgaste à imagem da cidade nas redes sociais.
+      </p>
+
+      <figure class="inline-image">
+        <img src="https://i.imgur.com/Bk4k6Ym.jpeg" alt="Linha 6 removida">
+        <figcaption>
+          Imagem da suposta remoção da Linha 6 causa espanto, meme, teoria e uma quantidade ilegal de comentários com “cringe”.
+        </figcaption>
+      </figure>
+
+      <p>
+        O caso rapidamente viralizou, dividindo moradores, rendendo memes e levantando o tipo de debate que só o ambiente digital brasileiro consegue transformar em crise pública. Entre incredulidade, deboche e indignação performática, a história ganhou ainda mais força após declarações atribuídas ao prefeito de São Paulo.
+      </p>
+
+      <h2>Prefeito fala sobre a aura da cidade</h2>
+
+      <p>
+        Em entrevista, o prefeito da capital paulista teria afirmado:
+      </p>
+
+      <blockquote>
+        “Eh meo, sabe como é né, esse negocioo de como os jovens falam 6 seven? tava acabdno com a aura da cidade geral me relatou que achou cringe.”
+      </blockquote>
+
+      <p>
+        A fala, que já circula amplamente entre perfis de humor e páginas de comentário político duvidoso, foi suficiente para incendiar ainda mais a discussão. Para alguns, trata-se de uma medida absurda. Para outros, apenas mais um retrato do encontro trágico entre gestão pública, linguagem de internet e a eterna busca por preservar a tal “aura” paulistana.
+      </p>
+
+      <h2>Moradores também se manifestam</h2>
+
+      <p>
+        No meio da repercussão, até relatos de moradores começaram a aparecer. Lucas, de 7 anos, que segundo informações cursa atualmente o 7º ano escolar, também comentou o caso. Em declaração curta, porém intensa, o menino resumiu sua reação com um:
+      </p>
+
+      <blockquote>
+        “IRU IRU IRU”
+      </blockquote>
+
+      <p>
+        Pouco depois, ele foi levado ao hospital após sofrer uma crise de soluço, em um episódio que só aumentou o nível de caos e surrealismo em torno da história.
+      </p>
+
+      <h2>República Federativa do Meme</h2>
+
+      <p>
+        Nas redes, o assunto segue dividindo opiniões. Há quem considere tudo isso um completo delírio urbano impulsionado por meme, enquanto outros já tratam o episódio como mais um marco da relação cada vez mais confusa entre administração pública, estética digital e vergonha alheia coletiva.
+      </p>
+
+      <p>
+        Agora fica a pergunta: estamos diante de uma decisão institucional séria ou apenas de mais um capítulo da <strong>República Federativa do Meme</strong>?
+      </p>
+
+      <a class="back-home" href="index.html">← Voltar para a capa</a>
+    </div>
+  </article>
+
+  <footer>
+    <img src="https://i.imgur.com/CBRftiF.png" alt="Logo do Correio da Meia-Noite" class="footer-logo">
+    <p>© 2026 Correio da Meia-Noite — A verdade chega primeiro. A dignidade, não.</p>
+    <p style="margin-top:8px;">
+      <a href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">Twitter oficial do jornal</a>
+    </p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark');
+      toggleButton.textContent = '☀️ Modo claro';
+    }
+
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      toggleButton.textContent = isDark ? '☀️ Modo claro' : '🌙 Modo escuro';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Time perde de 4 a 0 — Correio da Meia-Noite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#f4f4f4; --text:#1a1a1a; --card:#fff; --muted:#555; --header:#fff; --topbar:#111; --accent:#c40000; --border:#eee; --shadow:0 4px 18px rgba(0,0,0,.08); }
+    body.dark { --bg:#0f1115; --text:#f2f2f2; --card:#191c22; --muted:#b8bcc7; --header:#15181e; --topbar:#000; --accent:#ff4d4d; --border:#2a2f39; --shadow:0 4px 18px rgba(0,0,0,.35); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter', Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.7; transition:.3s; }
+    a { text-decoration:none; color:inherit; }
+    .top-bar { background:var(--topbar); color:#fff; text-align:center; padding:10px; font-size:.9rem; }
+    header { background:var(--header); border-bottom:3px solid var(--accent); padding:20px 5%; position:sticky; top:0; z-index:1000; }
+    .header-container { display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+    .logo { font-family:'Merriweather', serif; font-size:2rem; font-weight:900; color:var(--accent); text-transform:uppercase; letter-spacing:2px; }
+    .theme-toggle { background:var(--accent); color:#fff; border:none; border-radius:999px; padding:10px 16px; font-weight:700; cursor:pointer; }
+    .article { width:90%; max-width:900px; margin:30px auto; background:var(--card); border-radius:18px; box-shadow:var(--shadow); overflow:hidden; }
+    .article img { width:100%; height:380px; object-fit:cover; display:block; }
+    .article-content { padding:30px; }
+    .tag { display:inline-block; background:var(--accent); color:#fff; padding:6px 12px; border-radius:999px; font-size:.8rem; margin-bottom:14px; font-weight:700; }
+    h1, h2 { font-family:'Merriweather', serif; }
+    h1 { font-size:2.1rem; line-height:1.25; margin-bottom:12px; }
+    .meta { color:var(--muted); margin-bottom:18px; }
+    h2 { font-size:1.2rem; color:var(--accent); margin:24px 0 12px; }
+    p { margin-bottom:16px; }
+    .back-home { display:inline-block; margin-top:14px; font-weight:800; color:var(--accent); }
+    footer { margin-top:40px; background:var(--topbar); color:#fff; text-align:center; padding:25px 15px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">Urgente • Fofoqueiros internacionais • Política em surto • Economia em lágrimas • Imagens duvidosas</div>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo">Correio da Meia-Noite</a>
+      <button class="theme-toggle" id="themeToggle">🌙 Modo escuro</button>
+    </div>
+  </header>
+
+  <article class="article">
+    <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1200&q=80" alt="">
+    <div class="article-content">
+      <span class="tag">Esporte e humilhação</span>
+      <h1>Time perde de 4 a 0 e treinador afirma que placar foi apenas um detalhe estatístico</h1>
+      <div class="meta">Publicado às 01:39 • Por Departamento de Dor Esportiva</div>
+      <p>Após uma derrota que fez o torcedor olhar para o teto e questionar as próprias escolhas, o treinador da equipe derrotada afirmou com notável coragem que o placar de 4 a 0 não refletiu o jogo, mas sim um “acidente matemático com impacto emocional temporário”.</p>
+<p>A coletiva foi marcada por frases de efeito, justificativas metafísicas e uma tentativa ousada de transformar humilhação em conceito abstrato.</p>
+<h2>A torcida respondeu</h2>
+<p>Nas redes, torcedores manifestaram apoio do jeito mais brasileiro possível: pediram demissão de metade do elenco, do técnico, do gramado, do ônibus e, em casos mais graves, da própria bola.</p>
+      <a class="back-home" href="index.html">← Voltar para a capa</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2026 Correio da Meia-Noite — A verdade chega primeiro. A dignidade, não.</p>
+  </footer>
+
+  <script>
+    const toggleButton = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') { document.body.classList.add('dark'); toggleButton.textContent = '☀️ Modo claro'; }
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      toggleButton.textContent = isDark ? '☀️ Modo claro' : '🌙 Modo escuro';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
