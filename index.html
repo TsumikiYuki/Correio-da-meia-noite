@@ -40,6 +40,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', Arial, sans-serif;
       background: var(--bg);
@@ -101,6 +105,7 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
     }
 
     .logo-icon {
@@ -109,6 +114,7 @@
       object-fit: contain;
       border-radius: 50%;
       background: transparent;
+      flex-shrink: 0;
     }
 
     .logo {
@@ -118,6 +124,7 @@
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 1px;
+      line-height: 1.1;
     }
 
     .header-actions {
@@ -140,13 +147,17 @@
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       transition: transform 0.2s ease, opacity 0.2s ease;
+      min-height: 44px;
     }
 
     .theme-toggle:hover,
     .social-btn:hover,
-    .search-bar button:hover {
+    .search-bar button:hover,
+    .newsletter button:hover,
+    .tag:hover {
       transform: translateY(-1px);
       opacity: 0.92;
     }
@@ -166,10 +177,15 @@
       background: var(--card);
       color: var(--text);
       outline: none;
+      min-height: 44px;
     }
 
     .search-bar input::placeholder {
       color: var(--muted);
+    }
+
+    nav {
+      width: 100%;
     }
 
     nav ul {
@@ -227,12 +243,13 @@
     .tag {
       display: inline-block;
       background: var(--accent);
-      color: #fff;
+      color: #fff !important;
       padding: 6px 12px;
       border-radius: 999px;
       font-size: 0.8rem;
       margin-bottom: 14px;
       font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
     .main-news h1,
@@ -330,6 +347,7 @@
       font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
+      min-height: 44px;
     }
 
     .brand-center {
@@ -366,6 +384,12 @@
     }
 
     @media (max-width: 900px) {
+      header {
+        position: static;
+        top: auto;
+        backdrop-filter: none;
+      }
+
       .container {
         grid-template-columns: 1fr;
       }
@@ -378,18 +402,123 @@
         height: 260px;
       }
 
-      .header-container,
-      .header-actions {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
       .brand-banner img {
         max-height: 140px;
       }
 
       .main-news h1 {
         font-size: 1.7rem;
+      }
+
+      .header-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .logo-wrap {
+        width: 100%;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+        word-break: break-word;
+      }
+
+      .header-actions {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-bar {
+        width: 100%;
+        display: flex;
+        gap: 8px;
+      }
+
+      .search-bar input {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .search-bar button {
+        flex-shrink: 0;
+      }
+
+      .social-btn,
+      .theme-toggle {
+        width: 100%;
+      }
+
+      nav ul {
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .top-bar {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
+
+      .container {
+        width: 94%;
+        margin: 20px auto;
+        gap: 20px;
+      }
+
+      .main-news-content,
+      .news-card-content,
+      .sidebar-box,
+      .brand-card {
+        padding: 16px;
+      }
+
+      .logo-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .logo {
+        font-size: 0.95rem;
+      }
+
+      .search-bar {
+        flex-direction: row;
+      }
+
+      .search-bar input {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+      }
+
+      .search-bar button {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+      }
+
+      nav ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 18px;
+      }
+
+      nav li {
+        min-width: 0;
+      }
+
+      nav a {
+        display: block;
+        font-size: 0.95rem;
+      }
+
+      .main-news h1 {
+        font-size: 1.35rem;
+      }
+
+      .news-card h3 {
+        font-size: 1rem;
       }
     }
   </style>
@@ -398,13 +527,13 @@
   <div class="top-bar">Urgente • Fofoqueiros internacionais • Política em surto • Economia em lágrimas • Imagens duvidosas</div>
 
   <div class="brand-banner">
-    <img src="https://imgur.com/wLqn1Mn.png" alt="Banner Correio da Meia-Noite">
+    <img src="https://i.imgur.com/wLqn1Mn.png" alt="Banner Correio da Meia-Noite">
   </div>
 
   <header>
     <div class="header-container">
       <a href="index.html" class="logo-wrap">
-        <img src="https://imgur.com/CBRftiF.png" alt="Símbolo do Correio da Meia-Noite" class="logo-icon">
+        <img src="https://i.imgur.com/CBRftiF.png" alt="Símbolo do Correio da Meia-Noite" class="logo-icon">
         <span class="logo">Correio da Meia-Noite</span>
       </a>
 
@@ -413,6 +542,7 @@
           <input type="text" id="searchInput" placeholder="Pesquisar notícia..." aria-label="Pesquisar notícia">
           <button type="submit">Buscar</button>
         </form>
+
         <a class="social-btn" href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">𝕏 Twitter oficial</a>
         <button class="theme-toggle" id="themeToggle">🌙 Modo escuro</button>
 
@@ -455,17 +585,6 @@
           </div>
         </article>
 
-  <article class="news-card" id="sao-paulo">
-  <img src="https://i.imgur.com/tYyQHVu.jpeg" alt="São Paulo">
-  <div class="news-card-content">
-    <a class="tag" href="Sao-paulo-metro.html">Política em surto</a>
-    <a href="Sao-paulo-metro.html">
-      <h3>São Paulo retira Linha 6 do metrô graças ao meme 67</h3>
-    </a>
-    <p>Especialistas analisam se foi cringe ou poggers.</p>
-  </div>
-</article>
-
         <article class="news-card" id="mundo">
           <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1000&q=80" alt="Esportes">
           <div class="news-card-content">
@@ -498,12 +617,23 @@
             <p>A era da informação morreu e renasceu em formato de print com legenda debochada.</p>
           </div>
         </article>
+
+        <article class="news-card" id="sao-paulo">
+          <img src="https://i.imgur.com/tYyQHVu.jpeg" alt="São Paulo">
+          <div class="news-card-content">
+            <a class="tag" href="Sao-paulo-metro.html">Política em surto</a>
+            <a href="Sao-paulo-metro.html">
+              <h3>São Paulo retira Linha 6 do metrô graças ao meme 67</h3>
+            </a>
+            <p>Especialistas analisam se foi cringe ou poggers.</p>
+          </div>
+        </article>
       </div>
     </section>
 
     <aside class="sidebar" id="entrevistas">
       <div class="brand-card brand-center">
-        <img src="https://imgur.com/s6lCbqY.png" alt="Logo completa do Correio da Meia-Noite">
+        <img src="https://i.imgur.com/s6lCbqY.png" alt="Logo completa do Correio da Meia-Noite">
         <h2>Nosso caos institucional</h2>
         <p>A verdade chega primeiro. A dignidade, não.</p>
         <a class="social-btn" href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">Seguir no X</a>
@@ -516,6 +646,7 @@
           <li><a href="noticia-powerpoint.html">Economista entra em choque ao ver a frase “fonte: vozes da minha cabeça”</a></li>
           <li><a href="noticia-placar.html">Ranking dos surtos políticos da semana com nota técnica e deboche</a></li>
           <li><a href="noticia-cabelo.html">Veja as 5 imagens cursed que resumem melhor o cenário internacional</a></li>
+          <li><a href="Sao-paulo-metro.html">São Paulo entra em pane após crise diplomática com a Linha 6</a></li>
         </ul>
       </div>
 
@@ -527,14 +658,14 @@
       </div>
 
       <div class="brand-card brand-center">
-        <img src="https://imgur.com/pFbFR1t.png" alt="Símbolo alternativo do jornal" class="mini-logo">
+        <img src="https://i.imgur.com/pFbFR1t.png" alt="Símbolo alternativo do jornal" class="mini-logo">
         <p>Identidade oficial do jornal nas trevas da madrugada.</p>
       </div>
     </aside>
   </main>
 
   <footer>
-    <img src="https://imgur.com/CBRftiF.png" alt="Logo do Correio da Meia-Noite" class="footer-logo">
+    <img src="https://i.imgur.com/CBRftiF.png" alt="Logo do Correio da Meia-Noite" class="footer-logo">
     <p>© 2026 Correio da Meia-Noite — A verdade chega primeiro. A dignidade, não.</p>
     <p style="margin-top:8px;">
       <a href="https://x.com/Melgusta" target="_blank" rel="noopener noreferrer">Twitter oficial do jornal</a>
@@ -566,7 +697,8 @@
         { keywords: ['deputado', 'powerpoint', 'crise', 'grito'], url: 'noticia-powerpoint.html' },
         { keywords: ['time', 'placar', '4 a 0', 'futebol', 'treinador'], url: 'noticia-placar.html' },
         { keywords: ['prefeitura', 'obra', 'buraco', 'imersiva'], url: 'noticia-buraco.html' },
-        { keywords: ['autoridade', 'cabelo', 'anúncio', 'internet'], url: 'noticia-cabelo.html' }
+        { keywords: ['autoridade', 'cabelo', 'anúncio', 'internet'], url: 'noticia-cabelo.html' },
+        { keywords: ['são paulo', 'sao paulo', 'linha 6', 'metro', 'metrô', '67', 'cringe', 'poggers'], url: 'Sao-paulo-metro.html' }
       ];
 
       const found = routes.find(route => route.keywords.some(word => value.includes(word)));
@@ -574,7 +706,7 @@
       if (found) {
         window.location.href = found.url;
       } else {
-        alert('Nenhuma notícia encontrada. Tenta pesquisar por muro, Milei, deputado, placar, obra ou cabelo.');
+        alert('Nenhuma notícia encontrada. Tenta pesquisar por muro, Milei, deputado, placar, obra, cabelo, São Paulo ou linha 6.');
       }
 
       return false;
